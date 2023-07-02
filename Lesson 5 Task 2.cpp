@@ -1,12 +1,42 @@
 #include <iostream>
-#include <string>
 
-class Triangle // класс Треугольник
+class Figure // класс Фигура
 {
 protected:
 	std::string figure_name;
-	int side_a, side_b, side_c;
-	int corner_A, corner_B, corner_C;
+	int side_a, side_b, side_c, side_d;
+	int corner_A, corner_B, corner_C, corner_D;
+public:
+	Figure() {
+		figure_name = "Фигура";
+		side_a = 0;
+		side_b = 0;
+		side_c = 0;
+		side_d = 0;
+		corner_A = 0;
+		corner_B = 0;
+		corner_C = 0;
+		corner_D = 0;
+	}
+	std::string get_figure_name() { return figure_name; }
+	int get_side_a() { return side_a; }
+	int get_side_b() { return side_b; }
+	int get_side_c() { return side_c; }
+	int get_side_d() { return side_d; }
+	int get_corner_A() { return corner_A; }
+	int get_corner_B() { return corner_B; }
+	int get_corner_C() { return corner_C; }
+	int get_corner_D() { return corner_D; }
+
+	virtual void print_myself() {
+		std::cout << get_figure_name() << "\nСтороны: " << "a=" << get_side_a() << " b=" << get_side_b()
+			<< " c=" << get_side_c() << " d=" << get_side_d() << "\n" << "Углы: " << "А=" << get_corner_A()
+			<< " B=" << get_corner_B() << " C=" << get_corner_C() << " D=" << get_corner_D() << "\n" << std::endl;
+	}
+};
+
+class Triangle : public Figure// класс Треугольник
+{
 public:
 	Triangle() {
 		figure_name = "Треугольник";
@@ -17,150 +47,81 @@ public:
 		corner_B = 60;
 		corner_C = 70;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_b() { return side_b; }
-	int get_side_c() { return side_c; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_B() { return corner_B; }
-	int get_corner_C() { return corner_C; }
+	void print_myself() override {
+		std::cout << get_figure_name() << "\nСтороны: " << "a=" << get_side_a() << " b=" << get_side_b()
+			<< " c=" << get_side_c() << "\n" << "Углы: " << "А=" << get_corner_A()
+			<< " B=" << get_corner_B() << " C=" << get_corner_C() << "\n" << std::endl;
+	}
 };
+
 class RightTriangle : public Triangle // класс Прямоугольный треугольник
 {
-	std::string figure_name;
-	int corner_C;
 public:
 	RightTriangle() {
 		figure_name = "Прямоугольный треугольник";
 		corner_C = 90;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_corner_C() { return corner_C; }
 };
 
 class IsoscelesTriangle : public Triangle // класс Равнобедренный треугольник
 {
-	std::string figure_name;
-	int side_a, side_c;
-	int corner_A, corner_C;
 public:
 	IsoscelesTriangle() {
 		figure_name = "Равнобедренный треугольник";
 		side_a = side_c = 10;
 		corner_A = corner_C = 50;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_c() { return side_c; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_C() { return corner_C; }
 };
 
 class EquilateralTriangle : public Triangle // класс Равносторонний треугольник
 {
-	std::string figure_name;
-	int side_a, side_b, side_c;
-	int corner_A, corner_B, corner_C;
-
 public:
 	EquilateralTriangle() {
 		figure_name = "Равносторонний треугольник";
-		side_a = side_b = side_c = 0;
+		side_a = side_b = side_c = 30;
 		corner_A = corner_B = corner_C = 60;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_b() { return side_b; }
-	int get_side_c() { return side_c; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_B() { return corner_B; }
-	int get_corner_C() { return corner_C; }
 };
 
-class Quadrangle // класс Четырёхугольник
+class Quadrangle : public Figure// класс Четырёхугольник
 {
-protected:
-	std::string figure_name;
-	int side_a, side_b, side_c, side_d;
-	int corner_A, corner_B, corner_C, corner_D;
-
 public:
 	Quadrangle() {
 		figure_name = "Четырёхугольник";
 		side_a = 10;
 		side_b = 20;
 		side_c = 30;
-		side_d = 30;
+		side_d = 40;
 		corner_A = 50;
 		corner_B = 60;
 		corner_C = 70;
-		corner_D = 70;
+		corner_D = 80;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_b() { return side_b; }
-	int get_side_c() { return side_c; }
-	int get_side_d() { return side_d; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_B() { return corner_B; }
-	int get_corner_C() { return corner_C; }
-	int get_corner_D() { return corner_D; }
 };
 
-class Rectangle // класс Прямоугольник
+class Rectangle : public Quadrangle// класс Прямоугольник
 {
-protected:
-	std::string figure_name;
-	int side_a, side_b, side_c, side_d;
-	int corner_A, corner_B, corner_C, corner_D;
-
 public:
 	Rectangle() {
 		figure_name = "Прямоугольник";
-		side_a = side_c;
-		side_b = side_d;
+		side_a = side_c = 10;
+		side_b = side_d = 20;
 		corner_A = corner_B = corner_C = corner_D = 90;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_b() { return side_b; }
-	int get_side_c() { return side_c; }
-	int get_side_d() { return side_d; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_B() { return corner_B; }
-	int get_corner_C() { return corner_C; }
-	int get_corner_D() { return corner_D; }
 };
 
 class Square : public Rectangle // класс Квадрат
 {
-	std::string figure_name;
-	int side_a, side_b, side_c, side_d;
-	int corner_A, corner_B, corner_C, corner_D;
-
 public:
 	Square() {
 		figure_name = "Квадрат";
-		side_a = side_b = side_c = side_d;
+		side_a = side_b = side_c = side_d = 20;
 		corner_A = corner_B = corner_C = corner_D = 90;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_b() { return side_b; }
-	int get_side_c() { return side_c; }
-	int get_side_d() { return side_d; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_B() { return corner_B; }
-	int get_corner_C() { return corner_C; }
-	int get_corner_D() { return corner_D; }
 };
 
 class Parallelogram : public Rectangle // класс Параллелограмм
 {
-	std::string figure_name;
-	int side_a, side_b, side_c, side_d;
-	int corner_A, corner_B, corner_C, corner_D;
-
 public:
 	Parallelogram()
 	{
@@ -170,88 +131,44 @@ public:
 		corner_A = corner_C = 30;
 		corner_B = corner_D = 40;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_b() { return side_b; }
-	int get_side_c() { return side_c; }
-	int get_side_d() { return side_d; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_B() { return corner_B; }
-	int get_corner_C() { return corner_C; }
-	int get_corner_D() { return corner_D; }
 };
 
 class Rhomb : public Parallelogram // класс Ромб
 {
-	std::string figure_name;
-	int side_a, side_b, side_c, side_d;
-	int corner_A, corner_B, corner_C, corner_D;
-
 public:
 	Rhomb() {
 		figure_name = "Ромб";
-		side_a = side_b = side_c = side_d;
-		corner_A = corner_C;
-		corner_B = corner_D;
+		side_a = side_b = side_c = side_d = 30;
+		corner_A = corner_C = 30;
+		corner_B = corner_D = 40;
 	}
-	std::string get_figure_name() { return figure_name; }
-	int get_side_a() { return side_a; }
-	int get_side_b() { return side_b; }
-	int get_side_c() { return side_c; }
-	int get_side_d() { return side_d; }
-	int get_corner_A() { return corner_A; }
-	int get_corner_B() { return corner_B; }
-	int get_corner_C() { return corner_C; }
-	int get_corner_D() { return corner_D; }
 };
+
+void print_info(Figure* f)
+{
+	f->print_myself();
+}
 
 int main() {
 	setlocale(0, "");
 	Triangle tri;
+	print_info(&tri);
 	RightTriangle rig_tri;
+	print_info(&rig_tri);
 	IsoscelesTriangle isos_tri;
+	print_info(&isos_tri);
 	EquilateralTriangle eq_tri;
+	print_info(&eq_tri);
 	Quadrangle quad;
+	print_info(&quad);
 	Rectangle rect;
+	print_info(&rect);
 	Square square;
+	print_info(&square);
 	Parallelogram paral;
+	print_info(&paral);
 	Rhomb rhomb;
-
-	std::cout << tri.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << rig_tri.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << rig_tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << isos_tri.get_figure_name() << "\nСтороны: " << "a=" << isos_tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << isos_tri.get_side_c() << "\n" << "Углы: " << "А=" << isos_tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << isos_tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << eq_tri.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << quad.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << rect.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << square.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << paral.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << tri.get_corner_C() << "\n" << std::endl;
-
-	std::cout << rhomb.get_figure_name() << "\nСтороны: " << "a=" << tri.get_side_a() << " b=" << tri.get_side_b()
-		<< " c=" << tri.get_side_c() << "\n" << "Углы: " << "А=" << tri.get_corner_A() << " B=" << tri.get_corner_B()
-		<< " C=" << tri.get_corner_C() << "\n" << std::endl;
+	print_info(&rhomb);
 }
 
 
@@ -300,22 +217,22 @@ int main() {
 Углы : A = 60 B = 60 C = 60
 
 Четырёхугольник :
-	Стороны : a = 10 b = 20 c = 30 d = 40
-	Углы : A = 50 B = 60 C = 70 D = 80
+Стороны : a = 10 b = 20 c = 30 d = 40
+Углы : A = 50 B = 60 C = 70 D = 80
 
-	Прямоугольник :
-	Стороны : a = 10 b = 20 c = 10 d = 20
-	Углы : A = 90 B = 90 C = 90 D = 90
+Прямоугольник :
+Стороны : a = 10 b = 20 c = 10 d = 20
+Углы : A = 90 B = 90 C = 90 D = 90
 
-	Квадрат :
-	Стороны : a = 20 b = 20 c = 20 d = 20
-	Углы : A = 90 B = 90 C = 90 D = 90
+Квадрат :
+Стороны : a = 20 b = 20 c = 20 d = 20
+Углы : A = 90 B = 90 C = 90 D = 90
 
-	Параллелограмм :
-	Стороны : a = 20 b = 30 c = 20 d = 30
-	Углы : A = 30 B = 40 C = 30 D = 40
+Параллелограмм :
+Стороны : a = 20 b = 30 c = 20 d = 30
+Углы : A = 30 B = 40 C = 30 D = 40
 
-	Ромб :
-	Стороны : a = 30 b = 30 c = 30 d = 30
-	Углы : A = 30 B = 40 C = 30 D = 40
-	*/
+Ромб :
+Стороны : a = 30 b = 30 c = 30 d = 30
+Углы : A = 30 B = 40 C = 30 D = 40
+*/
