@@ -35,14 +35,13 @@ public:
 	}
 
 	Triangle(int a, int b, int c, int A, int B, int C) {
-		side_a = a;
-		side_b = b;
-		side_c = c;
-		corner_A = A;
-		corner_B = B;
-		corner_C = C;
-		std::cout << "Стороны: " << "a=" << side_a << " b=" << side_b << " c=" << side_c << "\n"
-			<< "Углы: " << "А=" << corner_A << " B=" << corner_B << " C=" << corner_C << "\n" << std::endl;
+		figure_name = "Треугольник";
+		this->side_a = a;
+		this->side_b = b;
+		this->side_c = c;
+		this->corner_A = A;
+		this->corner_B = B;
+		this->corner_C = C;
 	}
 
 	int get_side_a() { return side_a; }
@@ -62,49 +61,36 @@ public:
 class RightTriangle : public Triangle // класс Прямоугольный треугольник
 {
 public:
-	RightTriangle() {
+	RightTriangle(int a, int b, int c, int A, int B) {
 		figure_name = "Прямоугольный треугольник";
-		corner_C = 90;
-	}
-
-	RightTriangle(int side_a, int side_b, int side_c, int corner_A, int corner_B) {
-		side_a = 0;
-		side_b = 0;
-		side_c = 0;
-		corner_A = 0;
-		corner_B = 0;
+		this->side_a = a;
+		this->side_b = b;
+		this->side_c = c;
+		this->corner_A = A;
+		this->corner_B = B;
+		this->corner_C = 90;
 	}
 };
 
 class IsoscelesTriangle : public Triangle // класс Равнобедренный треугольник
 {
 public:
-	IsoscelesTriangle() {
+	IsoscelesTriangle(int b, int c, int B, int C) {
 		figure_name = "Равнобедренный треугольник";
-		side_a = side_c = 10;
-		corner_A = corner_C = 50;
-	}
-
-	IsoscelesTriangle(int side_b, int side_c, int corner_B, int corner_C) {
-		side_a = side_c = 0;
-		side_b = 0;
-		corner_A = corner_C = 0;
-		corner_B = 0;
+		this->side_a = this->side_c = c;
+		this->side_b = b;
+		this->corner_A = this->corner_C = C;
+		this->corner_B = B;
 	}
 };
 
 class EquilateralTriangle : public Triangle // класс Равносторонний треугольник
 {
 public:
-	EquilateralTriangle() {
+	EquilateralTriangle(int c) {
 		figure_name = "Равносторонний треугольник";
-		side_a = side_b = side_c = 30;
-		corner_A = corner_B = corner_C = 60;
-	}
-
-	EquilateralTriangle(int side_c, int corner_C) {
-		side_a = side_b = side_c = 0;
-		corner_A = corner_B = corner_C = 0;
+		this->side_a = this->side_b = this->side_c = c;
+		this->corner_A = this->corner_B = this->corner_C = 60;
 	}
 };
 
@@ -133,15 +119,16 @@ public:
 		corner_D = 80;
 	}
 
-	Quadrangle(int side_a, int side_b, int side_c, int side_d, int corner_A, int corner_B, int corner_C, int corner_D) {
-		side_a = 0;
-		side_b = 0;
-		side_c = 0;
-		side_d = 0;
-		corner_A = 0;
-		corner_B = 0;
-		corner_C = 0;
-		corner_D = 0;
+	Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) {
+		figure_name = "Четырёхугольник";
+		this->side_a = a;
+		this->side_b = b;
+		this->side_c = c;
+		this->side_d = d;
+		this->corner_A = A;
+		this->corner_B = B;
+		this->corner_C = C;
+		this->corner_D = D;
 	}
 
 	int get_side_a() { return side_a; }
@@ -156,7 +143,7 @@ public:
 	virtual void print_myself() {
 		std::cout << get_figure_name() << "\nСтороны: " << "a=" << get_side_a() << " b=" << get_side_b()
 			<< " c=" << get_side_c() << " d=" << get_side_d() << "\n"
-			<< "Углы: "	<< "А=" << get_corner_A() << " B=" << get_corner_B()
+			<< "Углы: " << "А=" << get_corner_A() << " B=" << get_corner_B()
 			<< " C=" << get_corner_C() << " D=" << get_corner_D() << "\n" << std::endl;
 	}
 };
@@ -164,68 +151,44 @@ public:
 class Rectangle : public Quadrangle // класс Прямоугольник
 {
 public:
-	Rectangle() {
+	Rectangle(int c, int d) {
 		figure_name = "Прямоугольник";
-		side_a = side_c = 10;
-		side_b = side_d = 20;
-		corner_A = corner_B = corner_C = corner_D = 90;
-	}
-
-	Rectangle(int side_c, int side_d, int corner_D) {
-		side_a = side_c = 0;
-		side_b = side_d = 0;
-		corner_A = corner_B = corner_C = corner_D = 0;
+		this->side_a = this->side_c = c;
+		this->side_b = this->side_d = d;
+		this->corner_A = this->corner_B = this->corner_C = this->corner_D = 90;
 	}
 };
 
 class Square : public Quadrangle // класс Квадрат
 {
 public:
-	Square() {
+	Square(int d) {
 		figure_name = "Квадрат";
-		side_a = side_b = side_c = side_d = 20;
-		corner_A = corner_B = corner_C = corner_D = 90;
-	}
-
-	Square(int side_d, int corner_D) {
-		side_a = side_b = side_c = side_d = 0;
-		corner_A = corner_B = corner_C = corner_D = 0;
+		this->side_a = this->side_b = this->side_c = this->side_d = d;
+		this->corner_A = this->corner_B = this->corner_C = this->corner_D = 90;
 	}
 };
 
 class Parallelogram : public Quadrangle // класс Параллелограмм
 {
 public:
-	Parallelogram() {
+	Parallelogram(int c, int d, int C, int D) {
 		figure_name = "Параллелограмм";
-		side_a = side_c = 20;
-		side_b = side_d = 30;
-		corner_A = corner_C = 30;
-		corner_B = corner_D = 40;
-	}
-
-	Parallelogram(int side_c, int side_d, int corner_C, int corner_D) {
-		side_a = side_c = 0;
-		side_b = side_d = 0;
-		corner_A = corner_C = 0;
-		corner_B = corner_D = 0;
+		this->side_a = this->side_c = c;
+		this->side_b = this->side_d = d;
+		this->corner_A = this->corner_C = C;
+		this->corner_B = this->corner_D = D;
 	}
 };
 
 class Rhomb : public Quadrangle // класс Ромб
 {
 public:
-	Rhomb() {
+	Rhomb(int d, int C, int D) {
 		figure_name = "Ромб";
-		side_a = side_b = side_c = side_d = 30;
-		corner_A = corner_C = 30;
-		corner_B = corner_D = 40;
-	}
-
-	Rhomb(int side_d, int corner_C, int corner_D) {
-		side_a = side_b = side_c = side_d = 30;
-		corner_A = corner_C = 30;
-		corner_B = corner_D = 40;
+		this->side_a = this->side_b = this->side_c = this->side_d = d;
+		this->corner_A = this->corner_C = C;
+		this->corner_B = this->corner_D = D;
 	}
 };
 
@@ -233,24 +196,32 @@ void print_info(Figure* f) { f->print_myself(); }
 
 int main() {
 	setlocale(LC_ALL, "Russian");
-	Triangle tri;
+
+	Triangle tri(20, 30, 40, 55, 65, 75);
 	print_info(&tri);
-	Triangle tr(20, 30, 40, 55, 65, 75);
-	RightTriangle rig_tri;
+
+	RightTriangle rig_tri(22, 32, 42, 52, 62);
 	print_info(&rig_tri);
-	IsoscelesTriangle isos_tri;
+
+	IsoscelesTriangle isos_tri(32, 44, 52, 62);
 	print_info(&isos_tri);
-	EquilateralTriangle eq_tri;
+
+	EquilateralTriangle eq_tri(62);
 	print_info(&eq_tri);
-	Quadrangle quad;
+
+	Quadrangle quad(12, 45, 89, 23, 65, 21, 20, 57);
 	print_info(&quad);
-	Rectangle rect;
+
+	Rectangle rect(79, 45);
 	print_info(&rect);
-	Square square;
+
+	Square square(45);
 	print_info(&square);
-	Parallelogram paral;
+
+	Parallelogram paral(45, 15, 84, 31);
 	print_info(&paral);
-	Rhomb rhomb;
+
+	Rhomb rhomb(15, 84, 31);
 	print_info(&rhomb);
 }
 
